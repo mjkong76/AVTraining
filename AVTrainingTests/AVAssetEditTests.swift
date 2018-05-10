@@ -76,7 +76,7 @@ class AVAssetEditTests: XCTestCase {
     /// The currently selected transition.
     var transitionType = TransitionType.diagonalWipe.rawValue
     /// The duration of the transition.
-    var transitionDuration = CMTimeMake(1200, 600)
+    var transitionDuration = CMTimeMakeWithSeconds(2.0, Int32(NSEC_PER_SEC))
 
     func initTimeRanges() -> [CMTimeRange] {
         let time = CMTimeMake(0, 0)
@@ -91,24 +91,26 @@ class AVAssetEditTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
         loadResource(forResource: "highway", ofType: "mp4")
         finishRunLoop = false
         while !finishRunLoop {
             Wait()
         }
-        
         loadResource(forResource: "roller", ofType: "mp4")
         finishRunLoop = false
         while !finishRunLoop {
             Wait()
         }
-        
         loadResource(forResource: "canal", ofType: "mp4")
         finishRunLoop = false
         while !finishRunLoop {
             Wait()
         }
+//        loadResource(forResource: "flower", ofType: "mov")
+//        finishRunLoop = false
+//        while !finishRunLoop {
+//            Wait()
+//        }
 }
     
     override func tearDown() {
@@ -142,8 +144,22 @@ class AVAssetEditTests: XCTestCase {
             }
             self.clips.append(asset)
             //
-            self.clipTimeRanges.append(CMTimeRange(start: CMTimeMakeWithSeconds(10, 1),
-                                                   duration: CMTimeMakeWithSeconds(10, 1)))
+            for i in 0..<3 {
+                if i == 0 {
+                    self.clipTimeRanges.append(CMTimeRange(start: CMTimeMakeWithSeconds(0, 1),
+                                                           duration: CMTimeMakeWithSeconds(10, 1)))
+                }
+                else if i == 1 {
+                    self.clipTimeRanges.append(CMTimeRange(start: CMTimeMakeWithSeconds(5, 1),
+                                                           duration: CMTimeMakeWithSeconds(20, 1)))
+                }
+                else {
+                    self.clipTimeRanges.append(CMTimeRange(start: CMTimeMakeWithSeconds(0, 1),
+                                                           duration: CMTimeMakeWithSeconds(20, 1)))
+                }
+            }
+//            self.clipTimeRanges.append(CMTimeRange(start: CMTimeMakeWithSeconds(0, 1),
+//                                                   duration: CMTimeMakeWithSeconds(10, 1)))
             dispatchGroup.leave()
             self.finishRunLoop = true
         }
@@ -178,11 +194,9 @@ class AVAssetEditTests: XCTestCase {
                 let clipVideoTrack = asset.tracks(withMediaType: AVMediaTypeVideo)[0]
                 try compositionVideoTracks[alternatingIndex].insertTimeRange(timeRangeInAsset,
                                                                              of: clipVideoTrack, at: nextClipStartTime)
-                
                 let clipAudioTrack = asset.tracks(withMediaType: AVMediaTypeAudio)[0]
                 try compositionAudioTracks[alternatingIndex].insertTimeRange(timeRangeInAsset,
                                                                              of: clipAudioTrack, at: nextClipStartTime)
-                
             } catch {
                 XCTAssert(false, "An error occurred inserting a time range of the source track into the composition.")
             }
@@ -215,8 +229,10 @@ class AVAssetEditTests: XCTestCase {
         }
         
         for i in 0..<clipCount {
-            print("\(i)th debug passThroughTimeRange info. \(StringFromCMTimeRange(range: passThroughTimeRanges[i]))\t")
-            print("\(i)th debug transitionTimeRanges info. \(StringFromCMTimeRange(range: transitionTimeRanges[i]))\n")
+            print("\(i)th debug passThroughTimeRange info. \(StringFromCMTimeRange(range: passThroughTimeRanges[i]))")
+        }
+        for i in 0..<clipCount {
+            print("\(i)th debug transitionTimeRanges info. \(StringFromCMTimeRange(range: transitionTimeRanges[i]))")
         }
     }
 
@@ -225,7 +241,7 @@ class AVAssetEditTests: XCTestCase {
         var alternatingIndex = 0
         
         // Set up the video composition to perform cross dissolve or diagonal wipe transitions between clips.
-        var instructions = [Any]()
+        var instructions:[Any] = []
         
         // Cycle between "pass through A", "transition from A to B", "pass through B".
         for i in 0..<clips.count {
@@ -233,8 +249,7 @@ class AVAssetEditTests: XCTestCase {
             
             if videoComposition.customVideoCompositorClass != nil {
                 let videoInstruction =
-                    APLCustomVideoCompositionInstruction(thePassthroughTrackID:
-                        compositionVideoTracks[alternatingIndex].trackID,
+                    APLCustomVideoCompositionInstruction(thePassthroughTrackID:compositionVideoTracks[alternatingIndex].trackID,
                                                          forTimeRange: passThroughTimeRanges[i])
 
                 instructions.append(videoInstruction)
@@ -263,14 +278,16 @@ class AVAssetEditTests: XCTestCase {
 
                     instructions.append(videoInstruction)
                 } else {
-                    let transitionInstruction = AVMutableVideoCompositionInstruction()
-                    transitionInstruction.timeRange = transitionTimeRanges[i]
-                    let fromLayer =
-                        AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTracks[alternatingIndex])
-                    let toLayer =
-                        AVMutableVideoCompositionLayerInstruction(assetTrack:compositionVideoTracks[1 - alternatingIndex])
-                    transitionInstruction.layerInstructions = [fromLayer, toLayer]
-                    instructions.append(transitionInstruction)
+                    if CMTIMERANGE_IS_EMPTY(transitionTimeRanges[i]) == false {
+                        let transitionInstruction = AVMutableVideoCompositionInstruction()
+                        transitionInstruction.timeRange = transitionTimeRanges[i]
+                        let fromLayer =
+                            AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTracks[alternatingIndex])
+                        let toLayer =
+                            AVMutableVideoCompositionLayerInstruction(assetTrack:compositionVideoTracks[1 - alternatingIndex])
+                        transitionInstruction.layerInstructions = [fromLayer, toLayer]
+                        instructions.append(transitionInstruction)
+                    }
                 }
             }
         }

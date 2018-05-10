@@ -36,13 +36,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6oL-OA-Ipj" customClass="AVPlayerView" customModule="AVTraining" customModuleProvider="target">
-                                <rect key="frame" x="10" y="109" width="355" height="553"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juz-MC-2r1">
-                                        <rect key="frame" x="10" y="0.0" width="100" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="4D3-xp-MAu"/>
+                                            <constraint firstAttribute="width" constant="100" id="Ais-Tq-tyW"/>
                                             <constraint firstAttribute="height" constant="35" id="Iiq-ni-ykm"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="17"/>
@@ -53,17 +53,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="juz-MC-2r1" firstAttribute="top" secondItem="6oL-OA-Ipj" secondAttribute="top" id="Xs3-ps-IJH"/>
-                                    <constraint firstItem="juz-MC-2r1" firstAttribute="leading" secondItem="6oL-OA-Ipj" secondAttribute="leading" constant="10" id="ZYY-Ug-WwI"/>
+                                    <constraint firstItem="juz-MC-2r1" firstAttribute="leading" secondItem="6oL-OA-Ipj" secondAttribute="leading" id="ZYY-Ug-WwI"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L59-t0-TNI" secondAttribute="trailing" constant="10" id="70c-pZ-trn"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6oL-OA-Ipj" secondAttribute="bottom" constant="5" id="MeU-HF-6ob"/>
-                            <constraint firstItem="6oL-OA-Ipj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="gOQ-w4-k48"/>
-                            <constraint firstItem="6oL-OA-Ipj" firstAttribute="top" secondItem="L59-t0-TNI" secondAttribute="bottom" constant="5" id="t8X-AI-loB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6oL-OA-Ipj" secondAttribute="trailing" constant="10" id="vTu-r5-6JT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6oL-OA-Ipj" secondAttribute="bottom" id="MeU-HF-6ob"/>
+                            <constraint firstItem="6oL-OA-Ipj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gOQ-w4-k48"/>
+                            <constraint firstItem="6oL-OA-Ipj" firstAttribute="top" secondItem="L59-t0-TNI" secondAttribute="bottom" id="t8X-AI-loB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6oL-OA-Ipj" secondAttribute="trailing" id="vTu-r5-6JT"/>
                             <constraint firstItem="L59-t0-TNI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="w72-gt-A2T"/>
                             <constraint firstItem="L59-t0-TNI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="xDV-J6-mZm"/>
                         </constraints>

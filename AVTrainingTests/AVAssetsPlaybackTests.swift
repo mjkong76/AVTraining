@@ -56,7 +56,7 @@ class AVAssetsPlaybackTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        loadResource(forResource: "roller", ofType: "mp4")
+        loadResource(forResource: "flower", ofType: "mov")
         finishRunLoop = false
         while !finishRunLoop {
             Wait()
@@ -122,6 +122,7 @@ class AVAssetsPlaybackTests: XCTestCase {
                  *  its duration can be fetech from the item
                  */
                 duration = playerItem.duration
+                duration.timescale *= 2
             } else if playerItem.status == .failed {
                 XCTAssert(false, "playerItem status is failed.");
             }
@@ -164,9 +165,12 @@ class AVAssetsPlaybackTests: XCTestCase {
         while !finishRunLoop {
             Wait()
         }
-        // playing for duration of asset
-        self.player!.play()
-        Wait(for: CMTimeGetSeconds(duration))
+        
+        if (self.playerItem?.status == .readyToPlay) {
+            // playing for duration of asset
+            self.player!.play()
+            Wait(for: CMTimeGetSeconds(duration))
+        }
     }
     
 }

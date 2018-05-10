@@ -6,119 +6,147 @@
 //  Copyright © 2018 NexStreaming Corp. All rights reserved.
 //
 
-import AVFoundation
 import Foundation
-import CoreMedia
+import AVFoundation
+import CoreVideo
 
-class APLCustomVideoCompositionInstruction: NSObject, AVVideoCompositionInstructionProtocol {
+class APLCustomVideoCompositor: NSObject, AVVideoCompositing {
+    
+    /// set if all pending requests have been cancelled
+    var shouldCancelAllRequest = false
+    
+    /// dispatch queue used to issue custom compositor rendering work requests
+    fileprivate var renderingQueue = DispatchQueue(label: "com.apple.aplcustomvideocompositor.renderingqueue")
+    
+    /// dispatch queue used to synchronize notification that the composition will switch to a different render context
+    fileprivate var renderContextQueue = DispatchQueue(label: "com.apple.aplcustomvideocompositor.rendercontextqueue")
+    
+    /// the current render context within which the custom compositor will render new output pixels buffers
+    fileprivate var renderContext: AVVideoCompositionRenderContext?
+    
+    /// Maintain the state of render context change
+    private var internalRenderContextDidChange = false
+    
+    /// Actual state of render context changes
+    private var renderContextDidChange: Bool {
+        get {
+            return renderContextQueue.sync {
+                internalRenderContextDidChange;
+            }
+        }
+        
+        set (newRenderContextDidChange) {
+            renderContextQueue.sync {
+                internalRenderContextDidChange = newRenderContextDidChange
+            }
+        }
+    }
 
-    /// ID used by subclasses to identify the foreground frame.
-    var foregroundTrackID: CMPersistentTrackID = kCMPersistentTrackID_Invalid
-    /// ID used by subclasses to identify the background frame.
-    var backgroundTrackID: CMPersistentTrackID = kCMPersistentTrackID_Invalid
+    /// Instance of `APLMetalRenderer` used to issue rendering commands to subclasses.
+    private var metalRenderer: APLMetalRenderer
     
-    /// The timeRange during which instructions will be effective.
-    var overrideTimeRange: CMTimeRange = CMTimeRange()
-    /// Indicates whether post-processing should be skipped for the duration of the instruction.
-    var overrideEnablePostProcessing = false
-    
-    /// Indicates whether to avoid some duplicate processing when rendering a frame from the same source and destinatin at different times.
-    var overrideContainsTweening = false
-    /// The track IDs required to compose frames for the instruction.
-    var overrideRequiredSourceTrackIDs: [NSValue]?
-    /// Track ID of the source frame when passthrough is in effect.
-    var overridePassthroughTrackID: CMPersistentTrackID = 0
-    
+    fileprivate init(metalRenderer: APLMetalRenderer) {
+        self.metalRenderer = metalRenderer
+    }
+
     // MARK: AVVideoCompositing protocol properties
-    /*
-     If for the duration of the instruction, the video composition result is one of the source frames, this property
-     should return the corresponding track ID. The compositor won't be run for the duration of the instruction and
-     the proper source frame will be used instead.
-     */
-    var passthroughTrackID: CMPersistentTrackID {
-        
-        get {
-            return self.overridePassthroughTrackID
+    // Returns the pixel buffer attributes required by the video compositor for new buffers created for processing
+    var requiredPixelBufferAttributesForRenderContext: [String : Any] =
+        [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+    
+    // The pixel buffer attributes of pixel buffers that will be vended by the adaptor's CVPixelBufferPool
+    var sourcePixelBufferAttributes: [String : Any]? =
+        [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+    
+    // MARK: AVVideoCompositing protocol functions
+    func renderContextChanged(_ newRenderContext: AVVideoCompositionRenderContext) {
+        renderContextQueue.sync {
+            renderContext = newRenderContext
         }
-        set {
-            self.overridePassthroughTrackID = newValue
+        renderContextDidChange = true
+    }
+    
+    enum PixelBufferRequestError: Error {
+        case newRenderedPixelBufferForRequestFailure
+    }
+    
+    func startRequest(_ asyncVideoCompositionRequest: AVAsynchronousVideoCompositionRequest) {
+        
+        autoreleasepool {
+            renderingQueue.sync {
+                NSLog("debug log. startRequest")
+                
+                /// check if all pending requests have been canceled
+                if self.shouldCancelAllRequest {
+                    asyncVideoCompositionRequest.finishCancelledRequest()
+                } else {
+                    
+                    guard let resultPixels = self.newRenderedPixelBufferForRequest(asyncVideoCompositionRequest) else {
+                        asyncVideoCompositionRequest.finish(with: PixelBufferRequestError.newRenderedPixelBufferForRequestFailure); return
+                    }
+                    
+                    // The resulting pixelbuffer from Metal renderer is passed along to the request.
+                    asyncVideoCompositionRequest.finish(withComposedVideoFrame: resultPixels)
+                }
+            }
         }
     }
     
-    /*
-     List of video track IDs required to compose frames for this instruction. If the value of this property
-     is nil, all source tracks will be considered required for composition.
-     */
-    var requiredSourceTrackIDs: [NSValue]? {
+    func factorForTimeInRange(_ time: CMTime, range: CMTimeRange) -> Float64 {
         
-        get {
-            return self.overrideRequiredSourceTrackIDs
-        }
+        let elapsed = CMTimeSubtract(time, range.start)
         
-        set {
-            self.overrideRequiredSourceTrackIDs = newValue
-        }
+        return CMTimeGetSeconds(elapsed) / CMTimeGetSeconds(range.duration)
     }
     
-    // Indicates the timeRange during which the instruction is effective.
-    var timeRange: CMTimeRange {
+    func newRenderedPixelBufferForRequest(_ request: AVAsynchronousVideoCompositionRequest) -> CVPixelBuffer? {
         
-        get {
-            return self.overrideTimeRange
+        /*
+         tweenFactor indicates how far within that timeRange are we rendering this frame.
+         This is normalized to vary between 0.0 and 1.0.
+         0.0 indicates that the time at first frame in that videoComposition timeRange.
+         1.0 indicates that the time at last frame in that videoComposition timeRange.
+         */
+        let tweenFactor = factorForTimeInRange(request.compositionTime, range: request.videoCompositionInstruction.timeRange)
+        
+        guard let currentInstruction =
+            request.videoCompositionInstruction as? APLCustomVideoCompositionInstruction else {
+            return nil
         }
         
-        set(newTimeRange) {
-            self.overrideTimeRange = newTimeRange
-        }
-    }
-    
-    // If NO, indicates that post-processing should be skipped for the duration of this instruction.
-    var enablePostProcessing: Bool {
-        
-        get {
-            return self.overrideEnablePostProcessing
+        /// source pixel buffers are used as inputs while rendering the transition
+        guard let foregroundSourceBuffer = request.sourceFrame(byTrackID: currentInstruction.foregroundTrackID) else {
+            return nil
         }
         
-        set(newPostProcessing) {
-            self.overrideEnablePostProcessing = newPostProcessing
-        }
-    }
-    
-    /*
-     If YES, rendering a frame from the same source buffers and the same composition instruction at 2 different
-     compositionTime may yield different output frames. If NO, 2 such compositions would yield the
-     same frame. The media pipeline may me able to avoid some duplicate processing when containsTweening is NO.
-     */
-    var containsTweening: Bool {
-        
-        get {
-            return self.overrideContainsTweening
+        guard let backgroundSourceBuffer = request.sourceFrame(byTrackID: currentInstruction.backgroundTrackID) else {
+            return nil
         }
         
-        set(newContainsTweening) {
-            self.overrideContainsTweening = newContainsTweening
+        /// destination pixel buffer into which we render the output
+        guard let dstPixels = renderContext?.newPixelBuffer() else {
+            return nil
         }
-    }
-    
-    init(thePassthroughTrackID: CMPersistentTrackID, forTimeRange theTimeRange: CMTimeRange) {
-        super.init()
         
-        passthroughTrackID = thePassthroughTrackID
-        timeRange = theTimeRange
+        metalRenderer.renderPixelBuffer(dstPixels, usingForegroundSourceBuffer: foregroundSourceBuffer, andBackgroundSourceBuffer: backgroundSourceBuffer, forTweenFactor: Float(tweenFactor))
         
-        requiredSourceTrackIDs = [NSValue]()
-        containsTweening = false
-        enablePostProcessing = false
-    }
-    
-    init(theSourceTrackIDs: [NSValue], forTimeRange theTimeRange: CMTimeRange) {
-        super.init()
-        
-        requiredSourceTrackIDs = theSourceTrackIDs
-        timeRange = theTimeRange
-        
-        passthroughTrackID = kCMPersistentTrackID_Invalid
-        containsTweening = true
-        enablePostProcessing = false
+        return dstPixels
     }
 }
+
+class APLCrossDissolveCompositor: APLCustomVideoCompositor {
+    
+    init?() {
+        guard let newRenderer = APLCrossDissolveRenderer() else { return nil }
+        super.init(metalRenderer: newRenderer)
+    }
+}
+
+class APLDiagonalWipeCompositor: APLCustomVideoCompositor {
+    
+    init?() {
+        guard let newRenderer = APLDiagonalWipeRenderer() else { return nil }
+        super.init(metalRenderer: newRenderer)
+    }
+}
+

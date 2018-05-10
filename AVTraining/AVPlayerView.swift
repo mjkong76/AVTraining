@@ -23,6 +23,7 @@ class AVPlayerView: UIView {
         
         set {
             playerLayer.player = newValue
+            playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         }
     }
     

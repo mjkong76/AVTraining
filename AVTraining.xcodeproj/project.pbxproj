@@ -25,14 +25,15 @@
 		E22A304020A287EC004074BC /* APLCrossDissolveRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303D20A287EC004074BC /* APLCrossDissolveRenderer.swift */; };
 		E22A304120A287EC004074BC /* APLMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303E20A287EC004074BC /* APLMetalRenderer.swift */; };
 		E22A304320A28823004074BC /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E22A304220A28823004074BC /* Shaders.metal */; };
-		E22A304820A28D87004074BC /* APLCustomVideoCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304720A28D87004074BC /* APLCustomVideoCompositor.swift */; };
-		E22A304A20A28D9D004074BC /* APLCustomVideoCompositionInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304920A28D9D004074BC /* APLCustomVideoCompositionInstruction.swift */; };
-		E22A304D20A2BB15004074BC /* APLCustomVideoCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304720A28D87004074BC /* APLCustomVideoCompositor.swift */; };
-		E22A304E20A2BB1D004074BC /* APLCustomVideoCompositionInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304920A28D9D004074BC /* APLCustomVideoCompositionInstruction.swift */; };
+		E22A304820A28D87004074BC /* APLCustomVideoCompositorInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304720A28D87004074BC /* APLCustomVideoCompositorInstruction.swift */; };
+		E22A304A20A28D9D004074BC /* APLCustomVideoCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */; };
+		E22A304D20A2BB15004074BC /* APLCustomVideoCompositorInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304720A28D87004074BC /* APLCustomVideoCompositorInstruction.swift */; };
+		E22A304E20A2BB1D004074BC /* APLCustomVideoCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */; };
 		E22A304F20A2BE1C004074BC /* APLCrossDissolveRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303D20A287EC004074BC /* APLCrossDissolveRenderer.swift */; };
 		E22A305020A2BE1E004074BC /* APLDiagonalWipeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303C20A287EC004074BC /* APLDiagonalWipeRenderer.swift */; };
 		E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303E20A287EC004074BC /* APLMetalRenderer.swift */; };
 		E22A305220A2BE23004074BC /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E22A304220A28823004074BC /* Shaders.metal */; };
+		E22A305420A3D897004074BC /* flower.mov in Resources */ = {isa = PBXBuildFile; fileRef = E22A305320A3D897004074BC /* flower.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,18 +65,13 @@
 		E22A301220A13C9C004074BC /* AVAssetEditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetEditTests.swift; sourceTree = "<group>"; };
 		E22A301620A17DE5004074BC /* highway.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = highway.mp4; sourceTree = "<group>"; };
 		E22A301820A18589004074BC /* canal.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = canal.mp4; sourceTree = "<group>"; };
-		E22A302A20A28667004074BC /* APLCrossDissolveRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLCrossDissolveRenderer.swift; sourceTree = "<group>"; };
-		E22A302B20A28667004074BC /* APLCustomVideoCompositionInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositionInstruction.swift; sourceTree = "<group>"; };
-		E22A302C20A28667004074BC /* APLCustomVideoCompositor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositor.swift; sourceTree = "<group>"; };
-		E22A302D20A28667004074BC /* APLDiagonalWipeRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLDiagonalWipeRenderer.swift; sourceTree = "<group>"; };
-		E22A302E20A28667004074BC /* APLMetalRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLMetalRenderer.swift; sourceTree = "<group>"; };
-		E22A302F20A28667004074BC /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		E22A303C20A287EC004074BC /* APLDiagonalWipeRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLDiagonalWipeRenderer.swift; sourceTree = "<group>"; };
 		E22A303D20A287EC004074BC /* APLCrossDissolveRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLCrossDissolveRenderer.swift; sourceTree = "<group>"; };
 		E22A303E20A287EC004074BC /* APLMetalRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLMetalRenderer.swift; sourceTree = "<group>"; };
 		E22A304220A28823004074BC /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
-		E22A304720A28D87004074BC /* APLCustomVideoCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositor.swift; sourceTree = "<group>"; };
-		E22A304920A28D9D004074BC /* APLCustomVideoCompositionInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositionInstruction.swift; sourceTree = "<group>"; };
+		E22A304720A28D87004074BC /* APLCustomVideoCompositorInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositorInstruction.swift; sourceTree = "<group>"; };
+		E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositor.swift; sourceTree = "<group>"; };
+		E22A305320A3D897004074BC /* flower.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = flower.mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +95,6 @@
 		E21D12B1209BDE3F00420F7A = {
 			isa = PBXGroup;
 			children = (
-				E22A301E20A2859C004074BC /* Custom */,
 				E21D12E4209BFC3C00420F7A /* Contents */,
 				E21D12BC209BDE3F00420F7A /* AVTraining */,
 				E21D12D1209BDE4000420F7A /* AVTrainingTests */,
@@ -151,29 +146,9 @@
 				E21D12E3209BFC3600420F7A /* roller.mp4 */,
 				E22A301620A17DE5004074BC /* highway.mp4 */,
 				E22A301820A18589004074BC /* canal.mp4 */,
+				E22A305320A3D897004074BC /* flower.mov */,
 			);
 			path = Contents;
-			sourceTree = "<group>";
-		};
-		E22A301E20A2859C004074BC /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				E22A302920A28667004074BC /* Custom */,
-			);
-			path = Custom;
-			sourceTree = "<group>";
-		};
-		E22A302920A28667004074BC /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				E22A302A20A28667004074BC /* APLCrossDissolveRenderer.swift */,
-				E22A302B20A28667004074BC /* APLCustomVideoCompositionInstruction.swift */,
-				E22A302C20A28667004074BC /* APLCustomVideoCompositor.swift */,
-				E22A302D20A28667004074BC /* APLDiagonalWipeRenderer.swift */,
-				E22A302E20A28667004074BC /* APLMetalRenderer.swift */,
-				E22A302F20A28667004074BC /* Shaders.metal */,
-			);
-			name = Custom;
 			sourceTree = "<group>";
 		};
 		E22A304520A28D27004074BC /* Metal Renderers */ = {
@@ -190,8 +165,8 @@
 		E22A304C20A28DB7004074BC /* Custom Compositors */ = {
 			isa = PBXGroup;
 			children = (
-				E22A304720A28D87004074BC /* APLCustomVideoCompositor.swift */,
-				E22A304920A28D9D004074BC /* APLCustomVideoCompositionInstruction.swift */,
+				E22A304720A28D87004074BC /* APLCustomVideoCompositorInstruction.swift */,
+				E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */,
 			);
 			name = "Custom Compositors";
 			sourceTree = "<group>";
@@ -281,6 +256,7 @@
 			files = (
 				E22A301920A185A3004074BC /* canal.mp4 in Resources */,
 				E21D12E5209C010700420F7A /* roller.mp4 in Resources */,
+				E22A305420A3D897004074BC /* flower.mov in Resources */,
 				E22A301720A17DE7004074BC /* highway.mp4 in Resources */,
 				E21D12C8209BDE3F00420F7A /* LaunchScreen.storyboard in Resources */,
 				E21D12C5209BDE3F00420F7A /* Assets.xcassets in Resources */,
@@ -306,11 +282,11 @@
 				E22A304320A28823004074BC /* Shaders.metal in Sources */,
 				E22A304020A287EC004074BC /* APLCrossDissolveRenderer.swift in Sources */,
 				E21D12E7209C400000420F7A /* AVPlayerView.swift in Sources */,
-				E22A304A20A28D9D004074BC /* APLCustomVideoCompositionInstruction.swift in Sources */,
+				E22A304A20A28D9D004074BC /* APLCustomVideoCompositor.swift in Sources */,
 				E21D12C0209BDE3F00420F7A /* ViewController.swift in Sources */,
 				E22A304120A287EC004074BC /* APLMetalRenderer.swift in Sources */,
 				E21D12BE209BDE3F00420F7A /* AppDelegate.swift in Sources */,
-				E22A304820A28D87004074BC /* APLCustomVideoCompositor.swift in Sources */,
+				E22A304820A28D87004074BC /* APLCustomVideoCompositorInstruction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,8 +300,8 @@
 				E21D12D3209BDE4000420F7A /* AVAssetsTests.swift in Sources */,
 				E22A305020A2BE1E004074BC /* APLDiagonalWipeRenderer.swift in Sources */,
 				E21D12E0209BE97F00420F7A /* HostAppAccess.swift in Sources */,
-				E22A304E20A2BB1D004074BC /* APLCustomVideoCompositionInstruction.swift in Sources */,
-				E22A304D20A2BB15004074BC /* APLCustomVideoCompositor.swift in Sources */,
+				E22A304E20A2BB1D004074BC /* APLCustomVideoCompositor.swift in Sources */,
+				E22A304D20A2BB15004074BC /* APLCustomVideoCompositorInstruction.swift in Sources */,
 				E22A305220A2BE23004074BC /* Shaders.metal in Sources */,
 				E21D12EB209C426900420F7A /* AVAssetsPlaybackTests.swift in Sources */,
 				E21D12E2209BF8F600420F7A /* TestTool.swift in Sources */,
