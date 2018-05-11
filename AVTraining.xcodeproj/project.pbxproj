@@ -42,6 +42,7 @@
 		E2ADF23120A55892004C63E1 /* 02 Keep Going.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305820A53969004074BC /* 02 Keep Going.m4a */; };
 		E2ADF23220A55892004C63E1 /* sample_clip1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */; };
 		E2ADF23420A593AB004C63E1 /* AVAssetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */; };
+		E2ADF23620A59FA9004C63E1 /* AVPlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF23520A59FA9004C63E1 /* AVPlayerFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		E22A305B20A53981004074BC /* Carl Sagan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Carl Sagan.m4a"; sourceTree = "<group>"; };
 		E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample_clip1.m4v; sourceTree = "<group>"; };
 		E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetBuilder.swift; sourceTree = "<group>"; };
+		E2ADF23520A59FA9004C63E1 /* AVPlayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */,
+				E2ADF23520A59FA9004C63E1 /* AVPlayerFactory.swift */,
 				E21D12D2209BDE4000420F7A /* AVAssetsTests.swift */,
 				E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */,
 				E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */,
@@ -328,6 +331,7 @@
 				E2ADF23420A593AB004C63E1 /* AVAssetBuilder.swift in Sources */,
 				E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */,
 				E22A304F20A2BE1C004074BC /* APLCrossDissolveRenderer.swift in Sources */,
+				E2ADF23620A59FA9004C63E1 /* AVPlayerFactory.swift in Sources */,
 				E22A301320A13C9C004074BC /* AVAssetEditVideoTests.swift in Sources */,
 				E21D12D3209BDE4000420F7A /* AVAssetsTests.swift in Sources */,
 				E22A305020A2BE1E004074BC /* APLDiagonalWipeRenderer.swift in Sources */,
