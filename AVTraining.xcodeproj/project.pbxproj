@@ -18,7 +18,7 @@
 		E21D12E5209C010700420F7A /* roller.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E21D12E3209BFC3600420F7A /* roller.mp4 */; };
 		E21D12E7209C400000420F7A /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12E6209C400000420F7A /* AVPlayerView.swift */; };
 		E21D12EB209C426900420F7A /* AVAssetsPlaybackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */; };
-		E22A301320A13C9C004074BC /* AVAssetEditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A301220A13C9C004074BC /* AVAssetEditTests.swift */; };
+		E22A301320A13C9C004074BC /* AVAssetEditVideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */; };
 		E22A301720A17DE7004074BC /* highway.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E22A301620A17DE5004074BC /* highway.mp4 */; };
 		E22A301920A185A3004074BC /* canal.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E22A301820A18589004074BC /* canal.mp4 */; };
 		E22A303F20A287EC004074BC /* APLDiagonalWipeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303C20A287EC004074BC /* APLDiagonalWipeRenderer.swift */; };
@@ -34,6 +34,14 @@
 		E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303E20A287EC004074BC /* APLMetalRenderer.swift */; };
 		E22A305220A2BE23004074BC /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E22A304220A28823004074BC /* Shaders.metal */; };
 		E22A305420A3D897004074BC /* flower.mov in Resources */ = {isa = PBXBuildFile; fileRef = E22A305320A3D897004074BC /* flower.mov */; };
+		E22A305620A535B9004074BC /* AVAssetEditAudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A305520A535B9004074BC /* AVAssetEditAudioTests.swift */; };
+		E2ADF22D20A55892004C63E1 /* Carl Sagan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305B20A53981004074BC /* Carl Sagan.m4a */; };
+		E2ADF22E20A55892004C63E1 /* John F. Kennedy.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305920A53981004074BC /* John F. Kennedy.m4a */; };
+		E2ADF22F20A55892004C63E1 /* Ronald Reagan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305A20A53981004074BC /* Ronald Reagan.m4a */; };
+		E2ADF23020A55892004C63E1 /* 01 Star Gazing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305720A53969004074BC /* 01 Star Gazing.m4a */; };
+		E2ADF23120A55892004C63E1 /* 02 Keep Going.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305820A53969004074BC /* 02 Keep Going.m4a */; };
+		E2ADF23220A55892004C63E1 /* sample_clip1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */; };
+		E2ADF23420A593AB004C63E1 /* AVAssetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +70,7 @@
 		E21D12E3209BFC3600420F7A /* roller.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = roller.mp4; sourceTree = "<group>"; };
 		E21D12E6209C400000420F7A /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetsPlaybackTests.swift; sourceTree = "<group>"; };
-		E22A301220A13C9C004074BC /* AVAssetEditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetEditTests.swift; sourceTree = "<group>"; };
+		E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetEditVideoTests.swift; sourceTree = "<group>"; };
 		E22A301620A17DE5004074BC /* highway.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = highway.mp4; sourceTree = "<group>"; };
 		E22A301820A18589004074BC /* canal.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = canal.mp4; sourceTree = "<group>"; };
 		E22A303C20A287EC004074BC /* APLDiagonalWipeRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLDiagonalWipeRenderer.swift; sourceTree = "<group>"; };
@@ -72,6 +80,14 @@
 		E22A304720A28D87004074BC /* APLCustomVideoCompositorInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositorInstruction.swift; sourceTree = "<group>"; };
 		E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositor.swift; sourceTree = "<group>"; };
 		E22A305320A3D897004074BC /* flower.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = flower.mov; sourceTree = "<group>"; };
+		E22A305520A535B9004074BC /* AVAssetEditAudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetEditAudioTests.swift; sourceTree = "<group>"; };
+		E22A305720A53969004074BC /* 01 Star Gazing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "01 Star Gazing.m4a"; sourceTree = "<group>"; };
+		E22A305820A53969004074BC /* 02 Keep Going.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "02 Keep Going.m4a"; sourceTree = "<group>"; };
+		E22A305920A53981004074BC /* John F. Kennedy.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "John F. Kennedy.m4a"; sourceTree = "<group>"; };
+		E22A305A20A53981004074BC /* Ronald Reagan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ronald Reagan.m4a"; sourceTree = "<group>"; };
+		E22A305B20A53981004074BC /* Carl Sagan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Carl Sagan.m4a"; sourceTree = "<group>"; };
+		E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample_clip1.m4v; sourceTree = "<group>"; };
+		E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,9 +146,11 @@
 		E21D12D1209BDE4000420F7A /* AVTrainingTests */ = {
 			isa = PBXGroup;
 			children = (
+				E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */,
 				E21D12D2209BDE4000420F7A /* AVAssetsTests.swift */,
 				E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */,
-				E22A301220A13C9C004074BC /* AVAssetEditTests.swift */,
+				E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */,
+				E22A305520A535B9004074BC /* AVAssetEditAudioTests.swift */,
 				E21D12DF209BE97F00420F7A /* HostAppAccess.swift */,
 				E21D12E1209BF8F600420F7A /* TestTool.swift */,
 				E21D12D4209BDE4000420F7A /* Info.plist */,
@@ -143,6 +161,12 @@
 		E21D12E4209BFC3C00420F7A /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				E22A305B20A53981004074BC /* Carl Sagan.m4a */,
+				E22A305920A53981004074BC /* John F. Kennedy.m4a */,
+				E22A305A20A53981004074BC /* Ronald Reagan.m4a */,
+				E22A305720A53969004074BC /* 01 Star Gazing.m4a */,
+				E22A305820A53969004074BC /* 02 Keep Going.m4a */,
+				E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */,
 				E21D12E3209BFC3600420F7A /* roller.mp4 */,
 				E22A301620A17DE5004074BC /* highway.mp4 */,
 				E22A301820A18589004074BC /* canal.mp4 */,
@@ -254,6 +278,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2ADF22D20A55892004C63E1 /* Carl Sagan.m4a in Resources */,
+				E2ADF22E20A55892004C63E1 /* John F. Kennedy.m4a in Resources */,
+				E2ADF22F20A55892004C63E1 /* Ronald Reagan.m4a in Resources */,
+				E2ADF23020A55892004C63E1 /* 01 Star Gazing.m4a in Resources */,
+				E2ADF23120A55892004C63E1 /* 02 Keep Going.m4a in Resources */,
+				E2ADF23220A55892004C63E1 /* sample_clip1.m4v in Resources */,
 				E22A301920A185A3004074BC /* canal.mp4 in Resources */,
 				E21D12E5209C010700420F7A /* roller.mp4 in Resources */,
 				E22A305420A3D897004074BC /* flower.mov in Resources */,
@@ -294,9 +324,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E22A305620A535B9004074BC /* AVAssetEditAudioTests.swift in Sources */,
+				E2ADF23420A593AB004C63E1 /* AVAssetBuilder.swift in Sources */,
 				E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */,
 				E22A304F20A2BE1C004074BC /* APLCrossDissolveRenderer.swift in Sources */,
-				E22A301320A13C9C004074BC /* AVAssetEditTests.swift in Sources */,
+				E22A301320A13C9C004074BC /* AVAssetEditVideoTests.swift in Sources */,
 				E21D12D3209BDE4000420F7A /* AVAssetsTests.swift in Sources */,
 				E22A305020A2BE1E004074BC /* APLDiagonalWipeRenderer.swift in Sources */,
 				E21D12E0209BE97F00420F7A /* HostAppAccess.swift in Sources */,

@@ -74,8 +74,6 @@ class APLCustomVideoCompositor: NSObject, AVVideoCompositing {
         
         autoreleasepool {
             renderingQueue.sync {
-                NSLog("debug log. startRequest")
-                
                 /// check if all pending requests have been canceled
                 if self.shouldCancelAllRequest {
                     asyncVideoCompositionRequest.finishCancelledRequest()

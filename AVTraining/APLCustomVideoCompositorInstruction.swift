@@ -106,7 +106,7 @@ class APLCustomVideoCompositionInstruction: NSObject, AVVideoCompositionInstruct
         passthroughTrackID = thePassthroughTrackID
         timeRange = theTimeRange
         
-        requiredSourceTrackIDs = [NSValue]()
+        requiredSourceTrackIDs = []
         containsTweening = false
         enablePostProcessing = false
     }
