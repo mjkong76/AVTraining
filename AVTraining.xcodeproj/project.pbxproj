@@ -12,13 +12,10 @@
 		E21D12C3209BDE3F00420F7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21D12C1209BDE3F00420F7A /* Main.storyboard */; };
 		E21D12C5209BDE3F00420F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21D12C4209BDE3F00420F7A /* Assets.xcassets */; };
 		E21D12C8209BDE3F00420F7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21D12C6209BDE3F00420F7A /* LaunchScreen.storyboard */; };
-		E21D12D3209BDE4000420F7A /* AVAssetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12D2209BDE4000420F7A /* AVAssetsTests.swift */; };
 		E21D12E0209BE97F00420F7A /* HostAppAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12DF209BE97F00420F7A /* HostAppAccess.swift */; };
 		E21D12E2209BF8F600420F7A /* TestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12E1209BF8F600420F7A /* TestTool.swift */; };
 		E21D12E5209C010700420F7A /* roller.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E21D12E3209BFC3600420F7A /* roller.mp4 */; };
 		E21D12E7209C400000420F7A /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12E6209C400000420F7A /* AVPlayerView.swift */; };
-		E21D12EB209C426900420F7A /* AVAssetsPlaybackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */; };
-		E22A301320A13C9C004074BC /* AVAssetEditVideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */; };
 		E22A301720A17DE7004074BC /* highway.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E22A301620A17DE5004074BC /* highway.mp4 */; };
 		E22A301920A185A3004074BC /* canal.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E22A301820A18589004074BC /* canal.mp4 */; };
 		E22A303F20A287EC004074BC /* APLDiagonalWipeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303C20A287EC004074BC /* APLDiagonalWipeRenderer.swift */; };
@@ -34,15 +31,30 @@
 		E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A303E20A287EC004074BC /* APLMetalRenderer.swift */; };
 		E22A305220A2BE23004074BC /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E22A304220A28823004074BC /* Shaders.metal */; };
 		E22A305420A3D897004074BC /* flower.mov in Resources */ = {isa = PBXBuildFile; fileRef = E22A305320A3D897004074BC /* flower.mov */; };
-		E22A305620A535B9004074BC /* AVAssetEditAudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A305520A535B9004074BC /* AVAssetEditAudioTests.swift */; };
 		E2ADF22D20A55892004C63E1 /* Carl Sagan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305B20A53981004074BC /* Carl Sagan.m4a */; };
 		E2ADF22E20A55892004C63E1 /* John F. Kennedy.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305920A53981004074BC /* John F. Kennedy.m4a */; };
 		E2ADF22F20A55892004C63E1 /* Ronald Reagan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305A20A53981004074BC /* Ronald Reagan.m4a */; };
-		E2ADF23020A55892004C63E1 /* 01 Star Gazing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305720A53969004074BC /* 01 Star Gazing.m4a */; };
-		E2ADF23120A55892004C63E1 /* 02 Keep Going.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E22A305820A53969004074BC /* 02 Keep Going.m4a */; };
 		E2ADF23220A55892004C63E1 /* sample_clip1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */; };
-		E2ADF23420A593AB004C63E1 /* AVAssetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */; };
-		E2ADF23620A59FA9004C63E1 /* AVPlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF23520A59FA9004C63E1 /* AVPlayerFactory.swift */; };
+		E2F9D51320AAD5F9008F7516 /* StarGazing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E2F9D51120AAD5F8008F7516 /* StarGazing.m4a */; };
+		E2F9D51420AAD5F9008F7516 /* KeepGoing.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E2F9D51220AAD5F9008F7516 /* KeepGoing.m4a */; };
+		E2F9D52320ABBA07008F7516 /* THTimelineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52220ABBA07008F7516 /* THTimelineItem.swift */; };
+		E2F9D52520ABBA7D008F7516 /* THVideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52420ABBA7D008F7516 /* THVideoItem.swift */; };
+		E2F9D52720ABBB86008F7516 /* THAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52620ABBB86008F7516 /* THAudioItem.swift */; };
+		E2F9D52920ABBBCA008F7516 /* THMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52820ABBBCA008F7516 /* THMediaItem.swift */; };
+		E2F9D52C20ABCA13008F7516 /* AssetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52B20ABCA13008F7516 /* AssetTests.swift */; };
+		E2F9D52D20ABCA55008F7516 /* THTimelineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52220ABBA07008F7516 /* THTimelineItem.swift */; };
+		E2F9D52E20ABCA58008F7516 /* THMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52820ABBBCA008F7516 /* THMediaItem.swift */; };
+		E2F9D52F20ABCA5A008F7516 /* THVideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52420ABBA7D008F7516 /* THVideoItem.swift */; };
+		E2F9D53020ABCA5C008F7516 /* THAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D52620ABBB86008F7516 /* THAudioItem.swift */; };
+		E2F9D53220ABEB82008F7516 /* THVideoTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53120ABEB82008F7516 /* THVideoTransition.swift */; };
+		E2F9D53620ABEE90008F7516 /* AVCompositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53520ABEE90008F7516 /* AVCompositionTests.swift */; };
+		E2F9D53A20ABEFBF008F7516 /* THBasicComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53920ABEFBF008F7516 /* THBasicComposition.swift */; };
+		E2F9D53C20ABEFCF008F7516 /* THBasicCompositionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */; };
+		E2F9D53E20ABF132008F7516 /* THComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53D20ABF132008F7516 /* THComposition.swift */; };
+		E2F9D53F20ABF57E008F7516 /* THComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53D20ABF132008F7516 /* THComposition.swift */; };
+		E2F9D54020ABF581008F7516 /* THBasicComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53920ABEFBF008F7516 /* THBasicComposition.swift */; };
+		E2F9D54120ABF585008F7516 /* THBasicCompositionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */; };
+		E2F9D54220AC0293008F7516 /* THVideoTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53120ABEB82008F7516 /* THVideoTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,14 +76,11 @@
 		E21D12C7209BDE3F00420F7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E21D12C9209BDE3F00420F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21D12CE209BDE4000420F7A /* AVTrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVTrainingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E21D12D2209BDE4000420F7A /* AVAssetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetsTests.swift; sourceTree = "<group>"; };
 		E21D12D4209BDE4000420F7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21D12DF209BE97F00420F7A /* HostAppAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostAppAccess.swift; sourceTree = "<group>"; };
 		E21D12E1209BF8F600420F7A /* TestTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTool.swift; sourceTree = "<group>"; };
 		E21D12E3209BFC3600420F7A /* roller.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = roller.mp4; sourceTree = "<group>"; };
 		E21D12E6209C400000420F7A /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
-		E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetsPlaybackTests.swift; sourceTree = "<group>"; };
-		E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetEditVideoTests.swift; sourceTree = "<group>"; };
 		E22A301620A17DE5004074BC /* highway.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = highway.mp4; sourceTree = "<group>"; };
 		E22A301820A18589004074BC /* canal.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = canal.mp4; sourceTree = "<group>"; };
 		E22A303C20A287EC004074BC /* APLDiagonalWipeRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APLDiagonalWipeRenderer.swift; sourceTree = "<group>"; };
@@ -81,15 +90,22 @@
 		E22A304720A28D87004074BC /* APLCustomVideoCompositorInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositorInstruction.swift; sourceTree = "<group>"; };
 		E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLCustomVideoCompositor.swift; sourceTree = "<group>"; };
 		E22A305320A3D897004074BC /* flower.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = flower.mov; sourceTree = "<group>"; };
-		E22A305520A535B9004074BC /* AVAssetEditAudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetEditAudioTests.swift; sourceTree = "<group>"; };
-		E22A305720A53969004074BC /* 01 Star Gazing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "01 Star Gazing.m4a"; sourceTree = "<group>"; };
-		E22A305820A53969004074BC /* 02 Keep Going.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "02 Keep Going.m4a"; sourceTree = "<group>"; };
 		E22A305920A53981004074BC /* John F. Kennedy.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "John F. Kennedy.m4a"; sourceTree = "<group>"; };
 		E22A305A20A53981004074BC /* Ronald Reagan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ronald Reagan.m4a"; sourceTree = "<group>"; };
 		E22A305B20A53981004074BC /* Carl Sagan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Carl Sagan.m4a"; sourceTree = "<group>"; };
 		E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample_clip1.m4v; sourceTree = "<group>"; };
-		E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetBuilder.swift; sourceTree = "<group>"; };
-		E2ADF23520A59FA9004C63E1 /* AVPlayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerFactory.swift; sourceTree = "<group>"; };
+		E2F9D51120AAD5F8008F7516 /* StarGazing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarGazing.m4a; sourceTree = "<group>"; };
+		E2F9D51220AAD5F9008F7516 /* KeepGoing.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeepGoing.m4a; sourceTree = "<group>"; };
+		E2F9D52220ABBA07008F7516 /* THTimelineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THTimelineItem.swift; sourceTree = "<group>"; };
+		E2F9D52420ABBA7D008F7516 /* THVideoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoItem.swift; sourceTree = "<group>"; };
+		E2F9D52620ABBB86008F7516 /* THAudioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THAudioItem.swift; sourceTree = "<group>"; };
+		E2F9D52820ABBBCA008F7516 /* THMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THMediaItem.swift; sourceTree = "<group>"; };
+		E2F9D52B20ABCA13008F7516 /* AssetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTests.swift; sourceTree = "<group>"; };
+		E2F9D53120ABEB82008F7516 /* THVideoTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THVideoTransition.swift; sourceTree = "<group>"; };
+		E2F9D53520ABEE90008F7516 /* AVCompositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCompositionTests.swift; sourceTree = "<group>"; };
+		E2F9D53920ABEFBF008F7516 /* THBasicComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THBasicComposition.swift; sourceTree = "<group>"; };
+		E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THBasicCompositionBuilder.swift; sourceTree = "<group>"; };
+		E2F9D53D20ABF132008F7516 /* THComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THComposition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +148,7 @@
 		E21D12BC209BDE3F00420F7A /* AVTraining */ = {
 			isa = PBXGroup;
 			children = (
-				E22A304C20A28DB7004074BC /* Custom Compositors */,
+				E2F9D51F20ABB867008F7516 /* Models */,
 				E22A304520A28D27004074BC /* Metal Renderers */,
 				E21D12BD209BDE3F00420F7A /* AppDelegate.swift */,
 				E21D12E6209C400000420F7A /* AVPlayerView.swift */,
@@ -148,12 +164,8 @@
 		E21D12D1209BDE4000420F7A /* AVTrainingTests */ = {
 			isa = PBXGroup;
 			children = (
-				E2ADF23320A593AB004C63E1 /* AVAssetBuilder.swift */,
-				E2ADF23520A59FA9004C63E1 /* AVPlayerFactory.swift */,
-				E21D12D2209BDE4000420F7A /* AVAssetsTests.swift */,
-				E21D12EA209C426900420F7A /* AVAssetsPlaybackTests.swift */,
-				E22A301220A13C9C004074BC /* AVAssetEditVideoTests.swift */,
-				E22A305520A535B9004074BC /* AVAssetEditAudioTests.swift */,
+				E2F9D52B20ABCA13008F7516 /* AssetTests.swift */,
+				E2F9D53520ABEE90008F7516 /* AVCompositionTests.swift */,
 				E21D12DF209BE97F00420F7A /* HostAppAccess.swift */,
 				E21D12E1209BF8F600420F7A /* TestTool.swift */,
 				E21D12D4209BDE4000420F7A /* Info.plist */,
@@ -164,11 +176,11 @@
 		E21D12E4209BFC3C00420F7A /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				E2F9D51220AAD5F9008F7516 /* KeepGoing.m4a */,
+				E2F9D51120AAD5F8008F7516 /* StarGazing.m4a */,
 				E22A305B20A53981004074BC /* Carl Sagan.m4a */,
 				E22A305920A53981004074BC /* John F. Kennedy.m4a */,
 				E22A305A20A53981004074BC /* Ronald Reagan.m4a */,
-				E22A305720A53969004074BC /* 01 Star Gazing.m4a */,
-				E22A305820A53969004074BC /* 02 Keep Going.m4a */,
 				E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */,
 				E21D12E3209BFC3600420F7A /* roller.mp4 */,
 				E22A301620A17DE5004074BC /* highway.mp4 */,
@@ -196,6 +208,38 @@
 				E22A304920A28D9D004074BC /* APLCustomVideoCompositor.swift */,
 			);
 			name = "Custom Compositors";
+			sourceTree = "<group>";
+		};
+		E2F9D51720ABB79C008F7516 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				E2F9D51C20ABB833008F7516 /* Privates */,
+				E22A304C20A28DB7004074BC /* Custom Compositors */,
+				E2F9D52220ABBA07008F7516 /* THTimelineItem.swift */,
+				E2F9D52820ABBBCA008F7516 /* THMediaItem.swift */,
+				E2F9D52420ABBA7D008F7516 /* THVideoItem.swift */,
+				E2F9D53120ABEB82008F7516 /* THVideoTransition.swift */,
+				E2F9D52620ABBB86008F7516 /* THAudioItem.swift */,
+			);
+			name = Builders;
+			sourceTree = "<group>";
+		};
+		E2F9D51C20ABB833008F7516 /* Privates */ = {
+			isa = PBXGroup;
+			children = (
+				E2F9D53D20ABF132008F7516 /* THComposition.swift */,
+				E2F9D53920ABEFBF008F7516 /* THBasicComposition.swift */,
+				E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */,
+			);
+			name = Privates;
+			sourceTree = "<group>";
+		};
+		E2F9D51F20ABB867008F7516 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2F9D51720ABB79C008F7516 /* Builders */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,10 +328,10 @@
 				E2ADF22D20A55892004C63E1 /* Carl Sagan.m4a in Resources */,
 				E2ADF22E20A55892004C63E1 /* John F. Kennedy.m4a in Resources */,
 				E2ADF22F20A55892004C63E1 /* Ronald Reagan.m4a in Resources */,
-				E2ADF23020A55892004C63E1 /* 01 Star Gazing.m4a in Resources */,
-				E2ADF23120A55892004C63E1 /* 02 Keep Going.m4a in Resources */,
 				E2ADF23220A55892004C63E1 /* sample_clip1.m4v in Resources */,
+				E2F9D51320AAD5F9008F7516 /* StarGazing.m4a in Resources */,
 				E22A301920A185A3004074BC /* canal.mp4 in Resources */,
+				E2F9D51420AAD5F9008F7516 /* KeepGoing.m4a in Resources */,
 				E21D12E5209C010700420F7A /* roller.mp4 in Resources */,
 				E22A305420A3D897004074BC /* flower.mov in Resources */,
 				E22A301720A17DE7004074BC /* highway.mp4 in Resources */,
@@ -312,12 +356,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E22A303F20A287EC004074BC /* APLDiagonalWipeRenderer.swift in Sources */,
+				E2F9D52920ABBBCA008F7516 /* THMediaItem.swift in Sources */,
 				E22A304320A28823004074BC /* Shaders.metal in Sources */,
+				E2F9D53E20ABF132008F7516 /* THComposition.swift in Sources */,
+				E2F9D53C20ABEFCF008F7516 /* THBasicCompositionBuilder.swift in Sources */,
+				E2F9D52720ABBB86008F7516 /* THAudioItem.swift in Sources */,
+				E2F9D53220ABEB82008F7516 /* THVideoTransition.swift in Sources */,
 				E22A304020A287EC004074BC /* APLCrossDissolveRenderer.swift in Sources */,
 				E21D12E7209C400000420F7A /* AVPlayerView.swift in Sources */,
 				E22A304A20A28D9D004074BC /* APLCustomVideoCompositor.swift in Sources */,
+				E2F9D53A20ABEFBF008F7516 /* THBasicComposition.swift in Sources */,
 				E21D12C0209BDE3F00420F7A /* ViewController.swift in Sources */,
+				E2F9D52520ABBA7D008F7516 /* THVideoItem.swift in Sources */,
 				E22A304120A287EC004074BC /* APLMetalRenderer.swift in Sources */,
+				E2F9D52320ABBA07008F7516 /* THTimelineItem.swift in Sources */,
 				E21D12BE209BDE3F00420F7A /* AppDelegate.swift in Sources */,
 				E22A304820A28D87004074BC /* APLCustomVideoCompositorInstruction.swift in Sources */,
 			);
@@ -327,19 +379,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E22A305620A535B9004074BC /* AVAssetEditAudioTests.swift in Sources */,
-				E2ADF23420A593AB004C63E1 /* AVAssetBuilder.swift in Sources */,
 				E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */,
+				E2F9D52E20ABCA58008F7516 /* THMediaItem.swift in Sources */,
+				E2F9D54020ABF581008F7516 /* THBasicComposition.swift in Sources */,
+				E2F9D54220AC0293008F7516 /* THVideoTransition.swift in Sources */,
+				E2F9D52F20ABCA5A008F7516 /* THVideoItem.swift in Sources */,
 				E22A304F20A2BE1C004074BC /* APLCrossDissolveRenderer.swift in Sources */,
-				E2ADF23620A59FA9004C63E1 /* AVPlayerFactory.swift in Sources */,
-				E22A301320A13C9C004074BC /* AVAssetEditVideoTests.swift in Sources */,
-				E21D12D3209BDE4000420F7A /* AVAssetsTests.swift in Sources */,
+				E2F9D53620ABEE90008F7516 /* AVCompositionTests.swift in Sources */,
 				E22A305020A2BE1E004074BC /* APLDiagonalWipeRenderer.swift in Sources */,
+				E2F9D52D20ABCA55008F7516 /* THTimelineItem.swift in Sources */,
 				E21D12E0209BE97F00420F7A /* HostAppAccess.swift in Sources */,
 				E22A304E20A2BB1D004074BC /* APLCustomVideoCompositor.swift in Sources */,
 				E22A304D20A2BB15004074BC /* APLCustomVideoCompositorInstruction.swift in Sources */,
+				E2F9D53020ABCA5C008F7516 /* THAudioItem.swift in Sources */,
+				E2F9D54120ABF585008F7516 /* THBasicCompositionBuilder.swift in Sources */,
+				E2F9D52C20ABCA13008F7516 /* AssetTests.swift in Sources */,
 				E22A305220A2BE23004074BC /* Shaders.metal in Sources */,
-				E21D12EB209C426900420F7A /* AVAssetsPlaybackTests.swift in Sources */,
+				E2F9D53F20ABF57E008F7516 /* THComposition.swift in Sources */,
 				E21D12E2209BF8F600420F7A /* TestTool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
