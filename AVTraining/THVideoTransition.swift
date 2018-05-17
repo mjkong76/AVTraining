@@ -26,18 +26,14 @@ enum THPushTransitionDirection {
 
 class THVideoTransition {
 
-    var type: THVideoTransitionType = .none
-    var pushDirection: THPushTransitionDirection {
-        get {
-            return self.pushDirection
-        }
-        set(newValue) {
-            if (type != .push) {
-                self.pushDirection = .none
+    var type: THVideoTransitionType = .none {
+        willSet(newValue) {
+            if (self.type != .push) {
+                pushDirection = .none
             }
-            self.pushDirection = newValue
         }
     }
+    var pushDirection: THPushTransitionDirection = .none
     var duration: CMTime = kCMTimeInvalid
     var range: CMTimeRange = kCMTimeRangeInvalid
     

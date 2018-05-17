@@ -17,18 +17,31 @@ class AVCompositionTests: XCTestCase {
     fileprivate var finishRunLoop = true
     fileprivate var index = 0
     fileprivate var videoItems:[THVideoItem] = []
+    fileprivate var audioItems:[THAudioItem] = []
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         self.videoItems = [
-            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "highway", ofType: "mp4")!),
-                       timeRange: CMTimeRangeMake(CMTimeMake(10,1), kCMTimeZero)),
-            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "roller", ofType: "mp4")!),
-                       timeRange: CMTimeRangeMake(CMTimeMake(15,1), CMTimeMake(10,1))),
-            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "canal", ofType: "mp4")!),
-                       timeRange: CMTimeRangeMake(CMTimeMake(15,1), kCMTimeZero))
+            // video-jpeg: duration(00:07)
+            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "video-jpeg", ofType: "MOV")!),
+                       timeRangeInAsset: kCMTimeRangeInvalid),
+            // flower: duration(00:10)
+            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "flower", ofType: "mov")!),
+                       timeRangeInAsset: kCMTimeRangeInvalid),
+            // sample_clip1: duration(00:10)
+            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "sample_clip1", ofType: "m4v")!),
+                       timeRangeInAsset: kCMTimeRangeInvalid)
         ]
+        self.audioItems = [
+            // KeepGoing: duration(00:25)
+            audioAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "KeepGoing", ofType: "m4a")!),
+                       startTime: kCMTimeZero, timeRangeInAsset: kCMTimeRangeInvalid),
+            // StarGazing: duration(00:19)
+            audioAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "StarGazing", ofType: "m4a")!),
+                       startTime: kCMTimeZero, timeRangeInAsset: kCMTimeRangeInvalid)
+        ]
+
         finishRunLoop = false
         while !finishRunLoop {
             Wait()
@@ -40,7 +53,30 @@ class AVCompositionTests: XCTestCase {
         super.tearDown()
     }
     
-    func videoAsset(withURL url:URL, timeRange range:CMTimeRange) -> THVideoItem {
+    func audioAsset(withURL url:URL, startTime sTime:CMTime, timeRangeInAsset range:CMTimeRange) -> THAudioItem {
+        let audioItem = THAudioItem.init(withURL: url)
+        audioItem.prepareWithAClosure { (complete: Bool) in
+            if range != kCMTimeRangeInvalid {
+                var duration = range.duration
+                if range.duration == kCMTimeZero {
+                    duration = CMTimeSubtract(audioItem.asset!.duration, range.start)
+                }
+                audioItem.timeRange = CMTimeRange(start: range.start, duration: duration)
+                print("audioItem closure rangeInfo: \(self.StringFromCMTimeRange(range: audioItem.timeRange))")
+            } else {
+                audioItem.timeRange = CMTimeRange(start: kCMTimeZero, duration: audioItem.asset!.duration)
+            }
+            audioItem.startTimeInTimeline = sTime
+            self.index = self.index + 1
+            if self.index == self.videoItems.count {
+                self.index = 0
+                self.finishRunLoop = true
+            }
+        }
+        return audioItem
+    }
+    
+    func videoAsset(withURL url:URL, timeRangeInAsset range:CMTimeRange) -> THVideoItem {
         let videoItem = THVideoItem.init(withURL: url)
         videoItem.prepareWithAClosure { (complete: Bool) in
             if range != kCMTimeRangeInvalid {
@@ -49,12 +85,15 @@ class AVCompositionTests: XCTestCase {
                     duration = CMTimeSubtract((videoItem.asset?.duration)!, range.start)
                 }
                 videoItem.timeRange = CMTimeRange(start: range.start, duration: duration)
-                print("closure rangeInfo: \(self.StringFromCMTimeRange(range: videoItem.timeRange))")
-
-                self.index = self.index + 1
-                if self.index == self.videoItems.count {
-                    self.finishRunLoop = true
-                }
+                print("videoItem closure rangeInfo: \(self.StringFromCMTimeRange(range: videoItem.timeRange))")
+            } else {
+                videoItem.timeRange = CMTimeRange(start: kCMTimeZero, duration: (videoItem.asset?.duration)!)
+                print("videoItem closure rangeInfo: \(self.StringFromCMTimeRange(range: videoItem.timeRange))")
+            }
+            self.index = self.index + 1
+            if self.index == self.videoItems.count {
+                self.index = 0
+                self.finishRunLoop = true
             }
         }
         return videoItem
@@ -105,7 +144,7 @@ class AVCompositionTests: XCTestCase {
 
     func testPlayWithNoTransition() {
         
-        let composition = THBasicComposition.init(withVideoItems: videoItems, audioItems:[], transition: nil)
+        let composition = THBasicComposition.init(withVideoItems: videoItems, audioItems:audioItems, transition: nil)
         
         player = AVPlayer.init(playerItem: composition.makePlayable())
         player?.currentItem?.addObserver(self, forKeyPath: "status", options: [.new], context: &playerItemStatusContext)
@@ -122,6 +161,22 @@ class AVCompositionTests: XCTestCase {
     
     func testPlayWithTransition() {
         
+        let videoTransition = THVideoTransition.init(withTransitionType: .wipe, transitionDuration: CMTimeMake(2,1))
+        let composition = THBasicComposition.init(withVideoItems: videoItems, audioItems:audioItems, transition: videoTransition)
+        
+        player = AVPlayer.init(playerItem: composition.makePlayable())
+        player?.currentItem?.addObserver(self, forKeyPath: "status", options: [.new], context: &playerItemStatusContext)
+        preview.player = player
+        // wait
+        finishRunLoop = false
+        while !finishRunLoop {
+            Wait()
+        }
+        
+        addPlayerTimeObserver()
+        player?.play()
+        Wait(for: CMTimeGetSeconds((player?.currentItem?.asset.duration)!))
+
     }
         
 }

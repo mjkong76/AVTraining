@@ -55,6 +55,7 @@
 		E2F9D54020ABF581008F7516 /* THBasicComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53920ABEFBF008F7516 /* THBasicComposition.swift */; };
 		E2F9D54120ABF585008F7516 /* THBasicCompositionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */; };
 		E2F9D54220AC0293008F7516 /* THVideoTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53120ABEB82008F7516 /* THVideoTransition.swift */; };
+		E2F9D54420AD5206008F7516 /* video-jpeg.MOV in Resources */ = {isa = PBXBuildFile; fileRef = E2F9D54320AD5205008F7516 /* video-jpeg.MOV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		E2F9D53920ABEFBF008F7516 /* THBasicComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THBasicComposition.swift; sourceTree = "<group>"; };
 		E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THBasicCompositionBuilder.swift; sourceTree = "<group>"; };
 		E2F9D53D20ABF132008F7516 /* THComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THComposition.swift; sourceTree = "<group>"; };
+		E2F9D54320AD5205008F7516 /* video-jpeg.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "video-jpeg.MOV"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				E22A305920A53981004074BC /* John F. Kennedy.m4a */,
 				E22A305A20A53981004074BC /* Ronald Reagan.m4a */,
 				E2ADF22C20A5587A004C63E1 /* sample_clip1.m4v */,
+				E2F9D54320AD5205008F7516 /* video-jpeg.MOV */,
 				E21D12E3209BFC3600420F7A /* roller.mp4 */,
 				E22A301620A17DE5004074BC /* highway.mp4 */,
 				E22A301820A18589004074BC /* canal.mp4 */,
@@ -337,6 +340,7 @@
 				E22A301720A17DE7004074BC /* highway.mp4 in Resources */,
 				E21D12C8209BDE3F00420F7A /* LaunchScreen.storyboard in Resources */,
 				E21D12C5209BDE3F00420F7A /* Assets.xcassets in Resources */,
+				E2F9D54420AD5206008F7516 /* video-jpeg.MOV in Resources */,
 				E21D12C3209BDE3F00420F7A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

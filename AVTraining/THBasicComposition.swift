@@ -11,7 +11,8 @@ import AVFoundation
 
 class THBasicComposition: THComposition {
     
-    fileprivate var composition: AVMutableComposition?
+    fileprivate var mutableComposition: AVMutableComposition?
+    fileprivate var audioTracks: AVMutableCompositionTrack?
     fileprivate var videoComposition: AVVideoComposition?
     fileprivate var audioMix: AVMutableAudioMix?
     fileprivate var videoItems:[THVideoItem] = []
@@ -22,14 +23,13 @@ class THBasicComposition: THComposition {
      */
     init(withVideoItems vItems:[THVideoItem], audioItems aItems:[THAudioItem], transition: THVideoTransition?) {
 
-        self.composition = AVMutableComposition.init()
-        self.composition?.naturalSize = (vItems.first?.asset?.tracks.first!.naturalSize)!
+        self.mutableComposition = AVMutableComposition.init()
         self.videoItems = vItems
         self.audioItems = aItems
         self.videoTransition = transition
+        self.audioMix = AVMutableAudioMix()
 
-        buildCompositionTracks()
-
+        buildCompositionTrack()
         self.videoComposition = buildVideoComposition()
     }
     
@@ -45,21 +45,58 @@ class THBasicComposition: THComposition {
                            CMTimeGetSeconds(range.duration))
     }
     
-    fileprivate func buildVideoComposition() -> AVVideoComposition? {
+    fileprivate func buildCustomVideoCompositionInstruction(withVideoComposition vc: AVMutableVideoComposition) -> [Any] {
         
-        let videoComposition = AVMutableVideoComposition.init(propertiesOf: composition!)
+        var instructions:[Any] = []
+        var trackIndex = 0
+        let compositionInstructions:[AVMutableVideoCompositionInstruction] = vc.instructions as! [AVMutableVideoCompositionInstruction]
+        for compositionInstruction in compositionInstructions {
+            let vci = compositionInstruction
+            if vci.layerInstructions.count == 1 {
+                let videoInstruction = APLCustomVideoCompositionInstruction(thePassthroughTrackID: vci.layerInstructions[0].trackID,
+                                                                            forTimeRange: vci.timeRange)
+                instructions.append(videoInstruction)
+            } else if vci.layerInstructions.count == 2 {
+                let videoInstruction = APLCustomVideoCompositionInstruction(theSourceTrackIDs:[NSNumber(value:vci.layerInstructions[0].trackID),
+                                                                                               NSNumber(value:vci.layerInstructions[1].trackID)],
+                                                                            forTimeRange: vci.timeRange)
+                videoInstruction.foregroundTrackID = vci.layerInstructions[trackIndex].trackID
+                videoInstruction.backgroundTrackID = vci.layerInstructions[1-trackIndex].trackID
+                instructions.append(videoInstruction)
+                trackIndex = (trackIndex + 1) % 2
+            } else {
+                instructions.append(vci)
+            }
+        }
         
-        return videoComposition
+        return instructions
     }
     
-    fileprivate func addCompositionTrackOfVideoType() {
+    fileprivate func buildVideoComposition() -> AVVideoComposition? {
+        
+        let vc = AVMutableVideoComposition.init(propertiesOf: mutableComposition!)
+        
+        if videoTransition?.type == .dissolve || videoTransition?.type == .wipe {
+            if videoTransition?.type == .dissolve {
+                vc.customVideoCompositorClass = APLCrossDissolveCompositor.self
+            } else {
+                vc.customVideoCompositorClass = APLDiagonalWipeCompositor.self
+            }
+            let instructions = buildCustomVideoCompositionInstruction(withVideoComposition: vc) as! [AVVideoCompositionInstructionProtocol]
+            vc.instructions = instructions
+        }
+        
+        return vc
+    }
+    
+    fileprivate func buildCompositionTrackWithVideo() {
         
         let trackID = kCMPersistentTrackID_Invalid
         
-        let compositionTrackA = (composition?.addMutableTrack(withMediaType: AVMediaTypeVideo, preferredTrackID: trackID))!
-        let compositionTrackB = (composition?.addMutableTrack(withMediaType: AVMediaTypeVideo, preferredTrackID: trackID))!
-        let compositionTrackC = (composition?.addMutableTrack(withMediaType: AVMediaTypeAudio, preferredTrackID: trackID))!
-        let compositionTrackD = (composition?.addMutableTrack(withMediaType: AVMediaTypeAudio, preferredTrackID: trackID))!
+        let compositionTrackA = (mutableComposition?.addMutableTrack(withMediaType: AVMediaTypeVideo, preferredTrackID: trackID))!
+        let compositionTrackB = (mutableComposition?.addMutableTrack(withMediaType: AVMediaTypeVideo, preferredTrackID: trackID))!
+        let compositionTrackC = (mutableComposition?.addMutableTrack(withMediaType: AVMediaTypeAudio, preferredTrackID: trackID))!
+        let compositionTrackD = (mutableComposition?.addMutableTrack(withMediaType: AVMediaTypeAudio, preferredTrackID: trackID))!
         
         let videoTracks:[AVMutableCompositionTrack] = [compositionTrackA, compositionTrackB]
         let audioTracks:[AVMutableCompositionTrack] = [compositionTrackC, compositionTrackD]
@@ -76,12 +113,12 @@ class THBasicComposition: THComposition {
             trackIndex = trackIndex % 2
             
             let compositionVideoTrack = videoTracks[trackIndex]
-            guard let videoTrack = videoItem.asset?.tracks(withMediaType: AVMediaTypeVideo).first else {
+            guard let videoTrack = videoItem.asset?.tracks(withMediaType: AVMediaTypeVideo)[0] else {
                 continue
             }
             try? compositionVideoTrack.insertTimeRange(videoItem.timeRange, of: videoTrack, at: cursorTime)
             let compositionAudioTrack = audioTracks[trackIndex]
-            if let audioTrack = videoItem.asset?.tracks(withMediaType: AVMediaTypeAudio).first {
+            if let audioTrack = videoItem.asset?.tracks(withMediaType: AVMediaTypeAudio)[0] {
                 try? compositionAudioTrack.insertTimeRange(videoItem.timeRange, of: audioTrack, at: cursorTime)
             }
             
@@ -94,30 +131,36 @@ class THBasicComposition: THComposition {
         }
     }
     
-    fileprivate func addCompositionTrackOfAudioType() {
+    fileprivate func buildCompositionTrackWithAudio() {
         
         let trackID = kCMPersistentTrackID_Invalid
         
-        var cursorTime = kCMTimeZero
-
         for audioItem in audioItems {
+            let compositionTrack = mutableComposition!.addMutableTrack(withMediaType: AVMediaTypeAudio, preferredTrackID: trackID)
+            try? compositionTrack.insertTimeRange(audioItem.timeRange, of: (audioItem.asset?.tracks[0])!, at: audioItem.startTimeInTimeline)
+            print("trackId: \(compositionTrack.trackID), startTime:\(StringFromCMTime(audioItem.startTimeInTimeline)), audioItem timeRange Info:\(StringFromCMTimeRange(range:audioItem.timeRange))")
             
-            let compositionTrack = composition?.addMutableTrack(withMediaType: AVMediaTypeAudio, preferredTrackID: trackID)
-            try? compositionTrack?.insertTimeRange(audioItem.timeRange, of: (audioItem.asset?.tracks.first)!, at: audioItem.startTimeInTimeline)
+            let halfSeconds = CMTimeMake(Int64(compositionTrack.asset!.duration.seconds), Int32(2))
+            let finishSeconds = CMTimeMake(Int64(halfSeconds.seconds), Int32(2))
             
-            cursorTime = CMTimeAdd(cursorTime, audioItem.timeRange.duration)
+            let audioMixInputParameter = AVMutableAudioMixInputParameters.init(track: compositionTrack)
+            audioMixInputParameter.setVolumeRamp(fromStartVolume: 0, toEndVolume: 1,
+                                                 timeRange: CMTimeRangeMake(kCMTimeZero, halfSeconds))
+            audioMixInputParameter.setVolumeRamp(fromStartVolume: 1, toEndVolume: 0,
+                                                 timeRange: CMTimeRangeMake(halfSeconds, finishSeconds))
+            audioMix!.inputParameters.append(audioMixInputParameter)
         }
     }
     
-    fileprivate func buildCompositionTracks() {
+    fileprivate func buildCompositionTrack() {
         
-        addCompositionTrackOfVideoType()
-        addCompositionTrackOfAudioType()
+        buildCompositionTrackWithVideo()
+        buildCompositionTrackWithAudio()
     }
     
     func makePlayable() -> AVPlayerItem {
         
-        let playerItem: AVPlayerItem = AVPlayerItem.init(asset: self.composition!)
+        let playerItem: AVPlayerItem = AVPlayerItem.init(asset: mutableComposition!)
         
         playerItem.videoComposition = videoComposition
         playerItem.audioMix = audioMix
@@ -128,7 +171,7 @@ class THBasicComposition: THComposition {
     func makeExportable() -> AVAssetExportSession {
         
         let presetName = AVAssetExportPresetHighestQuality
-        let session: AVAssetExportSession = AVAssetExportSession.init(asset: self.composition!, presetName: presetName)!
+        let session: AVAssetExportSession = AVAssetExportSession.init(asset: mutableComposition!, presetName: presetName)!
         
         session.videoComposition = videoComposition
         session.audioMix = audioMix
