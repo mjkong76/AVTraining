@@ -24,6 +24,7 @@ class THBasicComposition: THComposition {
     init(withVideoItems vItems:[THVideoItem], audioItems aItems:[THAudioItem], transition: THVideoTransition?) {
 
         self.mutableComposition = AVMutableComposition.init()
+        self.mutableComposition?.naturalSize = (vItems.first?.asset?.tracks(withMediaType: AVMediaTypeVideo)[0].naturalSize)!
         self.videoItems = vItems
         self.audioItems = aItems
         self.videoTransition = transition
@@ -49,7 +50,7 @@ class THBasicComposition: THComposition {
         
         var instructions:[Any] = []
         var trackIndex = 0
-        let compositionInstructions:[AVMutableVideoCompositionInstruction] = vc.instructions as! [AVMutableVideoCompositionInstruction]
+        let compositionInstructions = vc.instructions as! [AVMutableVideoCompositionInstruction]
         for compositionInstruction in compositionInstructions {
             let vci = compositionInstruction
             if vci.layerInstructions.count == 1 {
@@ -113,6 +114,11 @@ class THBasicComposition: THComposition {
             trackIndex = trackIndex % 2
             
             let compositionVideoTrack = videoTracks[trackIndex]
+            let naturalSizeOfAsset = (videoItem.asset?.tracks(withMediaType: AVMediaTypeVideo)[0].naturalSize)!
+            let scaleX = (mutableComposition?.naturalSize.width)! / naturalSizeOfAsset.width
+            let scaleY = (mutableComposition?.naturalSize.height)! / naturalSizeOfAsset.height
+            compositionVideoTrack.preferredTransform = CGAffineTransform.init(scaleX: scaleX, y: scaleY)
+            
             guard let videoTrack = videoItem.asset?.tracks(withMediaType: AVMediaTypeVideo)[0] else {
                 continue
             }

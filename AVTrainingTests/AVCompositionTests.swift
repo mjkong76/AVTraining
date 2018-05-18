@@ -23,11 +23,11 @@ class AVCompositionTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         self.videoItems = [
-            // video-jpeg: duration(00:07)
-            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "video-jpeg", ofType: "MOV")!),
-                       timeRangeInAsset: kCMTimeRangeInvalid),
             // flower: duration(00:10)
             videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "flower", ofType: "mov")!),
+                       timeRangeInAsset: kCMTimeRangeInvalid),
+            // video-jpeg: duration(00:07)
+            videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "video-jpeg", ofType: "MOV")!),
                        timeRangeInAsset: kCMTimeRangeInvalid),
             // sample_clip1: duration(00:10)
             videoAsset(withURL: URL(fileURLWithPath: Bundle.main.path(forResource: "sample_clip1", ofType: "m4v")!),
