@@ -56,6 +56,8 @@
 		E2F9D54120ABF585008F7516 /* THBasicCompositionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */; };
 		E2F9D54220AC0293008F7516 /* THVideoTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D53120ABEB82008F7516 /* THVideoTransition.swift */; };
 		E2F9D54420AD5206008F7516 /* video-jpeg.MOV in Resources */ = {isa = PBXBuildFile; fileRef = E2F9D54320AD5205008F7516 /* video-jpeg.MOV */; };
+		E2F9D57D20AEAFF6008F7516 /* AudioProcessingTapWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D57C20AEAFF6008F7516 /* AudioProcessingTapWrapper.swift */; };
+		E2F9D57E20AEB01D008F7516 /* AudioProcessingTapWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9D57C20AEAFF6008F7516 /* AudioProcessingTapWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,7 @@
 		E2F9D53B20ABEFCF008F7516 /* THBasicCompositionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THBasicCompositionBuilder.swift; sourceTree = "<group>"; };
 		E2F9D53D20ABF132008F7516 /* THComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THComposition.swift; sourceTree = "<group>"; };
 		E2F9D54320AD5205008F7516 /* video-jpeg.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "video-jpeg.MOV"; sourceTree = "<group>"; };
+		E2F9D57C20AEAFF6008F7516 /* AudioProcessingTapWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProcessingTapWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,7 @@
 		E21D12BC209BDE3F00420F7A /* AVTraining */ = {
 			isa = PBXGroup;
 			children = (
+				E2F9D57B20AEAFAD008F7516 /* AudioTapWrap */,
 				E2F9D51F20ABB867008F7516 /* Models */,
 				E22A304520A28D27004074BC /* Metal Renderers */,
 				E21D12BD209BDE3F00420F7A /* AppDelegate.swift */,
@@ -243,6 +247,14 @@
 				E2F9D51720ABB79C008F7516 /* Builders */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		E2F9D57B20AEAFAD008F7516 /* AudioTapWrap */ = {
+			isa = PBXGroup;
+			children = (
+				E2F9D57C20AEAFF6008F7516 /* AudioProcessingTapWrapper.swift */,
+			);
+			name = AudioTapWrap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +374,7 @@
 				E22A303F20A287EC004074BC /* APLDiagonalWipeRenderer.swift in Sources */,
 				E2F9D52920ABBBCA008F7516 /* THMediaItem.swift in Sources */,
 				E22A304320A28823004074BC /* Shaders.metal in Sources */,
+				E2F9D57D20AEAFF6008F7516 /* AudioProcessingTapWrapper.swift in Sources */,
 				E2F9D53E20ABF132008F7516 /* THComposition.swift in Sources */,
 				E2F9D53C20ABEFCF008F7516 /* THBasicCompositionBuilder.swift in Sources */,
 				E2F9D52720ABBB86008F7516 /* THAudioItem.swift in Sources */,
@@ -385,6 +398,7 @@
 			files = (
 				E22A305120A2BE20004074BC /* APLMetalRenderer.swift in Sources */,
 				E2F9D52E20ABCA58008F7516 /* THMediaItem.swift in Sources */,
+				E2F9D57E20AEB01D008F7516 /* AudioProcessingTapWrapper.swift in Sources */,
 				E2F9D54020ABF581008F7516 /* THBasicComposition.swift in Sources */,
 				E2F9D54220AC0293008F7516 /* THVideoTransition.swift in Sources */,
 				E2F9D52F20ABCA5A008F7516 /* THVideoItem.swift in Sources */,

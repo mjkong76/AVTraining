@@ -154,6 +154,7 @@ class THBasicComposition: THComposition {
                                                  timeRange: CMTimeRangeMake(kCMTimeZero, halfSeconds))
             audioMixInputParameter.setVolumeRamp(fromStartVolume: 1, toEndVolume: 0,
                                                  timeRange: CMTimeRangeMake(halfSeconds, finishSeconds))
+            audioMixInputParameter.audioTapProcessor = AudioProcessingTapWrapper.init().tap?.takeUnretainedValue()
             audioMix!.inputParameters.append(audioMixInputParameter)
         }
     }
